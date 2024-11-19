@@ -22,7 +22,15 @@ func NewCli() *Cli {
 	return &Cli{output: bytes.NewBufferString("")}
 }
 
+func (c *Cli) Output() string {
+	return c.output.String()
+}
+
 func (c *Cli) Run(args []string) {
+	if args == nil || len(args) < 2 {
+		c.output.WriteString(usage+ "\n")
+		return
+	}
 	nums := []int{}
 	var isErr bool
 	for _, arg := range args[2:] {
@@ -38,7 +46,7 @@ func (c *Cli) Run(args []string) {
 		nums = append(nums, n)
 	}
 	if isErr {
-		c.output.WriteString(usage)
+		c.output.WriteString(usage+"\n")
 		return
 	}
 
@@ -48,5 +56,5 @@ func (c *Cli) Run(args []string) {
 	} else {
 		res = calc.Mul(nums...)
 	}
-	c.output.WriteString(strconv.Itoa(res))
+	c.output.WriteString(strconv.Itoa(res) + "\n")
 }

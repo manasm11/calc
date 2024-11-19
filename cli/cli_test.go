@@ -10,6 +10,8 @@ func TestRun(t *testing.T) {
 		input    string
 		expected string
 	}{
+		{"./calc", usage},
+
 		// test cases for add functionality
 		{"./calc add 1 13", "14"},
 		{"./calc add 22 8", "30"},
@@ -33,7 +35,7 @@ func TestRun(t *testing.T) {
 			cli := NewCli()
 			cli.Run(s)
 
-			compareStrings(t, cli.output.String(), c.expected)
+			compareStrings(t, cli.output.String(), c.expected+"\n")
 		})
 
 		// if cli.output.String() != c.expected {
