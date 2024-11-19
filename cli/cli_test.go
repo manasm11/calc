@@ -10,12 +10,21 @@ func TestRun(t *testing.T) {
 		input    string
 		expected string
 	}{
+		// test cases for add functionality
 		{"./calc add 1 13", "14"},
 		{"./calc add 22 8", "30"},
 		{"./calc add a 8", "invalid integer 'a'" + usage},
 		{"./calc add 1 *", "invalid integer '*'" + usage},
 		{"./calc add ~ *", "invalid integer '~'" + "\ninvalid integer '*'" + usage},
 		{"./calc add 1 5 6", "12"},
+
+		// test cases for mul functionality
+		{"./calc mul 1 13", "13"},
+		{"./calc mul 22 8", "176"},
+		{"./calc mul a 8", "invalid integer 'a'" + usage},
+		{"./calc mul 1 *", "invalid integer '*'" + usage},
+		{"./calc mul ~ *", "invalid integer '~'" + "\ninvalid integer '*'" + usage},
+		{"./calc mul 2 5 6", "60"},
 	}
 
 	for _, c := range cases {

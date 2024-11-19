@@ -31,8 +31,8 @@ func (c *Cli) Run(args []string) {
 			if isErr {
 				c.output.WriteString("\n")
 			}
-			isErr = true
 			c.output.WriteString("invalid integer '" + arg + "'")
+			isErr = true
 			continue
 		}
 		nums = append(nums, n)
@@ -41,6 +41,12 @@ func (c *Cli) Run(args []string) {
 		c.output.WriteString(usage)
 		return
 	}
-	res := calc.Add(nums...)
+
+	var res int
+	if args[1] == "add" {
+		res = calc.Add(nums...)
+	} else {
+		res = calc.Mul(nums...)
+	}
 	c.output.WriteString(strconv.Itoa(res))
 }
